@@ -68,7 +68,7 @@ GO";
             eneity += "{";
             eneity += "\r\n";
 
-            eneity = CreateProperty(eneity, "int", "Id", "主键Id");
+            eneity = CreateProperty(eneity, "int", "Id", "主键Id", true);
 
             foreach (var item in table.Fields)
             {
@@ -76,18 +76,18 @@ GO";
                 eneity = CreateProperty(eneity, item.Type, item.Name, item.Description);
             }
 
-            eneity = CreateProperty(eneity, "DateTime", "CreationTime", "创建时间");
-            eneity = CreateProperty(eneity, "DateTime", "LastModifycationTime", "最后修改时间");
-            eneity = CreateProperty(eneity, "bool", "IsDeleted", "是否删除");
+            eneity = CreateProperty(eneity, "DateTime", "CreationTime", "创建时间",true);
+            eneity = CreateProperty(eneity, "DateTime", "LastModifycationTime", "最后修改时间",true);
+            eneity = CreateProperty(eneity, "bool", "IsDeleted", "是否删除",true);
 
             eneity += "}";
 
             return eneity;
         }
 
-        private static string CreateProperty(string entity , string type ,string name,string description)
+        private static string CreateProperty(string entity , string type ,string name,string description, bool isDefault=false)
         {
-            type = ConvertEntityPropertyType(type);
+            type = isDefault ? type : ConvertEntityPropertyType(type);
             entity += "///<summary> \r\n";
             entity += "///" + "  " + description + "\r\n";
             entity += "///</summary> \r\n";

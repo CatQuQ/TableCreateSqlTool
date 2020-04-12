@@ -26,6 +26,8 @@ namespace CreateTableHelper
 GO";
         static void Main(string[] args)
         {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance); // 加这句代码后就可解决乱码问题
+
             WriteLine("为了方便生成建表sql且不忘记公司规定的默认字段所以有了此工具!", ConsoleColor.Green);
             WriteLine("生成的sql,默认带有 IsDeleted | RowVersion | LastModifycationTime | CreationTime | Id 字段", ConsoleColor.Green);
             WriteLine("命令说明", ConsoleColor.Red);
